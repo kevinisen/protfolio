@@ -105,7 +105,7 @@ const stepItem = {
     filter: "blur(0px)",
     transition: {
       duration: 1.05,
-      ease: [0.16, 1, 0.3, 1],
+      ease: [0.16, 1, 0.3, 1] as const,
     },
   },
 };
@@ -237,7 +237,7 @@ function GitFlowLine() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{
               duration: 0.6,
-              ease: [0.16, 1, 0.3, 1],
+              ease: [0.16, 1, 0.3, 1] as const,
               delay: 0.45 + i * 0.18,
             }}
           />
@@ -265,7 +265,7 @@ function Dot({ cx, cy, delay }: { cx: number; cy: number; delay: number }) {
       initial={{ opacity: 0, scale: 0.8, filter: "blur(2px)" }}
       whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const, delay }}
     />
   );
 }
@@ -277,7 +277,7 @@ function draw(duration: number, delay: number) {
       pathLength: 1,
       opacity: 1,
       transition: {
-        pathLength: { duration, ease: [0.16, 1, 0.3, 1], delay },
+        pathLength: { duration, ease: [0.16, 1, 0.3, 1] as const, delay },
         opacity: { duration: 0.25, delay },
       },
     },
@@ -329,7 +329,7 @@ const practiceCardItem = {
     opacity: 1,
     y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] as const },
   },
 };
 

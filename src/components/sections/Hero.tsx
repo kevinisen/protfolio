@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-const easePremium = [0.16, 1, 0.3, 1]; 
+const easePremium = [0.16, 1, 0.3, 1] as const; 
 // plus doux que le précédent
 
 export default function Hero() {
