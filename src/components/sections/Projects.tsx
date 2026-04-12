@@ -20,12 +20,6 @@ const projects = [
     stack: ["React", "Express", "CI/CD"],
     imageUrl: "https://picsum.photos/seed/saas/900/600",
   },
-  {
-    title: "Finance Tracker",
-    description: "A personal budget tracking app to analyze cash flow in real-time.",
-    stack: ["Vue", "Firebase", "D3.js"],
-    imageUrl: "https://picsum.photos/seed/fin/900/600",
-  },
 ];
 
 export default function Projects() {
@@ -37,7 +31,7 @@ export default function Projects() {
         and meaningful AI integration.
       </p>
 
-      <DropRevealGroup className="mt-14 grid gap-8 sm:grid-cols-2 lg:gap-10">
+      <DropRevealGroup className="mt-14 grid gap-6 md:grid-cols-3">
         {projects.map((project, index) => (
           <ProjectCard key={index} {...project} />
         ))}
@@ -71,13 +65,13 @@ function ProjectCard({
       </div>
 
       {/* Content */}
-      <div className="flex flex-1 flex-col p-6 sm:p-8">
-        <h3 className="text-xl font-semibold text-neutral-900">{title}</h3>
-        <p className="mt-3 text-sm sm:text-base text-neutral-600 leading-relaxed flex-1">
+      <div className="flex flex-1 flex-col p-5 sm:p-6">
+        <h3 className="text-lg sm:text-xl font-semibold text-neutral-900">{title}</h3>
+        <p className="mt-3 text-sm text-neutral-600 leading-relaxed flex-1">
           {description}
         </p>
 
-        <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
+        <div className="mt-6 flex flex-wrap gap-2">
           {stack.map((tech, i) => (
             <span
               key={i}
