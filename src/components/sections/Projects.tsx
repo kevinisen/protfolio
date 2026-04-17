@@ -35,7 +35,39 @@ export default function Projects() {
           <ProjectCard key={index} {...project} />
         ))}
       </DropRevealGroup>
+
+      {/* WebGL / Three.js Mini Projects */}
+      <div className="mt-20">
+        <h3 className="text-xl font-semibold text-neutral-900">Creative Experiments (WebGL)</h3>
+        <p className="mt-2 text-sm text-neutral-600 max-w-xl">
+          A few extra Three.js pieces I&apos;ve built to experiment with 3D on the web. Click to explore.
+        </p>
+
+        <div className="mt-8 flex flex-wrap gap-4">
+          <ThreeJsLink title="Web Portal" href="https://portal-3js.vercel.app/" />
+          <ThreeJsLink title="Haunted House" href="https://hhouse3js.vercel.app/" />
+          <ThreeJsLink title="Galaxy Physics" href="https://galaxy3js.vercel.app/" />
+          <ThreeJsLink title="Earth 3D" href="https://earth3js-v1.vercel.app/" />
+        </div>
+      </div>
     </section>
+  );
+}
+
+function ThreeJsLink({ title, href }: { title: string; href: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group flex items-center gap-3 rounded-full border border-black/10 bg-neutral-50 px-5 py-3 text-sm font-medium text-neutral-900 shadow-sm transition hover:bg-neutral-100 hover:shadow-md"
+    >
+      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-black/5 group-hover:bg-neutral-900 group-hover:text-white transition">
+        🚀
+      </span>
+      {title}
+      <svg className="w-4 h-4 ml-1 text-neutral-400 group-hover:text-neutral-900 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+    </a>
   );
 }
 
