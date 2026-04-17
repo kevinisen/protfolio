@@ -36,7 +36,7 @@ export default function Hero() {
         >
           Kevin NETH
           <span className="mt-4 block text-neutral-600 font-normal">
-            I build reliable systems, and integrate AI when it’s useful.
+            Let’s build something solid, together.
           </span>
         </motion.h1>
 
@@ -47,8 +47,10 @@ export default function Hero() {
           transition={{ duration: 1.4, ease: easePremium, delay: 0.6 }}
           className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg"
         >
-          Clean architecture, maintainable code, and pragmatic ML integration —
-          focused on real-world constraints and production quality.
+          I’m a full-stack developer building applications, with a focus on best practices and AI integration.
+          <br className="hidden sm:block" />
+          <br className="sm:hidden" />
+          Stay focused. Keep it simple. Move forward.
         </motion.p>
 
         {/* Buttons */}

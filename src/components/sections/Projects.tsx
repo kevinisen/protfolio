@@ -3,16 +3,16 @@ import { DropRevealGroup } from "@/components/animations/DropRevealGroup";
 
 const projects = [
   {
-    title: "AI System Monitor",
+    title: "VR Assistant",
     description: "A production-ready monitoring dashboard integrating ML anomaly detection.",
     stack: ["Next.js", "Node.js", "PostgreSQL"],
-    imageUrl: "https://picsum.photos/seed/monitor/900/600",
+    imageUrl: "/project_img/vr-assistant.png",
   },
   {
-    title: "ML From Scratch",
+    title: "Royalstart",
     description: "Re-implementation of core machine learning algorithms in math.",
     stack: ["Python", "NumPy", "Algebra"],
-    imageUrl: "https://picsum.photos/seed/ml/900/600",
+    imageUrl: "/project_img/royalstart.png",
   },
   {
     title: "SaaS Planner",
@@ -80,16 +80,6 @@ function ProjectCard({
               {tech}
             </span>
           ))}
-        </div>
-
-        <div className="mt-8 flex gap-6">
-          <button className="text-sm font-medium text-neutral-900 flex items-center gap-1 hover:opacity-70 transition">
-            View Project
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-          </button>
-          <button className="text-sm font-medium text-neutral-500 hover:text-neutral-900 transition">
-            GitHub
-          </button>
         </div>
       </div>
     </div>
