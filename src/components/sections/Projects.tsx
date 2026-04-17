@@ -25,10 +25,9 @@ const projects = [
 export default function Projects() {
   return (
     <section id="projects" className="mx-auto max-w-6xl px-6 py-12">
-      <h2 className="text-2xl font-semibold">Selected Projects</h2>
-      <p className="mt-3 text-neutral-600 max-w-2xl">
-        A selection of projects focused on production quality, system thinking,
-        and meaningful AI integration.
+      <h2 className="text-2xl font-semibold">My Projects</h2>
+      <p className="mt-3 text-neutral-600 max-w-2xl leading-relaxed">
+        Here are some of the projects I&apos;ve worked on (some are not clickable since they were developed privately for clients).
       </p>
 
       <DropRevealGroup className="mt-14 grid gap-6 md:grid-cols-3">

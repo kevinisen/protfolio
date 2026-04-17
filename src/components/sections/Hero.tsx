@@ -24,7 +24,7 @@ export default function Hero() {
           transition={{ duration: 1.2, ease: easePremium }}
           className="text-sm tracking-wide text-neutral-600"
         >
-          Full-stack • Production-minded • AI when it matters
+          Full-stack • AI • Developer
         </motion.p>
 
         {/* Title */}
