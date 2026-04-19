@@ -31,116 +31,13 @@ const orderedSteps: Step[] = [
   },
 ];
 
-export default function Work() {
-  return (
-    <section id="work" className="mx-auto max-w-6xl px-6 py-12 overflow-x-hidden">
-      <header className="max-w-2xl mb-12">
-        <h2 className="text-2xl font-semibold text-neutral-900">Work & Methodologies</h2>
-        <p className="mt-3 text-neutral-600">
-          The tools and frameworks that power my daily workflow.
-        </p>
-      </header>
-
-      {/* AI First Block */}
-      <AIFeature />
-
-      {/* Git Flow Visual */}
-      <div className="mt-20 max-w-2xl">
-        <h3 className="text-2xl font-semibold text-neutral-900">Git Flow</h3>
-        <p className="mt-3 text-neutral-600">
-          Git flow that favors clarity, fast reviews, and predictable delivery.
-        </p>
-      </div>
-
-      {/* Unified Scaled View (No scrolling, always properly sized) */}
-      <div className="mt-8 w-full flex justify-center overflow-hidden h-[200px] sm:h-[250px] md:h-[400px] items-center">
-        <div
-          style={{ width: 1000, height: 400, transform: 'scale(min(1, max(0.3, calc(100vw / 1050))))', transformOrigin: 'center center' }}
-          className="relative shrink-0 flex items-center justify-center pointer-events-none"
-        >
-          {/* The horizontal line pinned to the middle */}
-          <div className="absolute top-1/2 left-0 w-full -translate-y-1/2 z-0 flex justify-center">
-            <GitFlowLine />
-          </div>
-
-          <motion.div
-            className="relative z-10 w-full h-full flex justify-between items-center max-w-[1000px] mx-auto pointer-events-auto"
-            variants={stepsContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.25 }}
-          >
-            {orderedSteps.map((s, i) => (
-              <StepBlock key={s.title} step={s} index={i} />
-            ))}
-          </motion.div>
-        </div>
-      </div>
-
-      <WorkPractices />
-    </section>
-  );
-}
-
-/* -------------------- AI Feature Banner -------------------- */
-function AIFeature() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
-      className="w-full bg-white rounded-3xl border border-black/5 shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center overflow-hidden flex-col md:flex-row relative"
-    >
-      {/* Decorative gradient blur */}
-      <div className="absolute -top-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full blur-[80px] pointer-events-none" />
-      <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-indigo-500/20 rounded-full blur-[80px] pointer-events-none" />
-
-      {/* Text Content */}
-      <div className="p-8 md:p-12 flex-1 relative z-10 w-full md:w-auto">
-        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-700">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
-          </span>
-          Next-Gen Workflow
-        </div>
-        <h3 className="text-3xl font-bold text-neutral-900 leading-tight">
-          Working with AI, not relying on it
-        </h3>
-        <p className="mt-4 text-base text-neutral-600 leading-relaxed max-w-lg">
-          Artificial intelligence is at the core of my methodology. I use it to:
-        </p>
-        <ul className="mt-6 space-y-3">
-          {["Optimize context and token usage for efficiency", "Use structured prompting to guide complex tasks", "Review, refine, and validate every output", "Integrate AI into real development workflows"].map((item, i) => (
-            <li key={i} className="flex items-start text-sm text-neutral-700 gap-3">
-              <svg className="mt-0.5 h-4 w-4 shrink-0 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* Animation Area */}
-      <div className="w-full md:w-[45%] h-64 md:h-auto min-h-[300px] border-t md:border-t-0 md:border-l border-neutral-100 bg-neutral-50/50 flex items-center justify-center p-8 relative z-10">
-        <div className="scale-125 md:scale-150 origin-center">
-          <AIVisual />
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-/* -------------------- Motion -------------------- */
 
 const stepsContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.32,
-      delayChildren: 0.08,
+      staggerChildren: 0.15,
+      delayChildren: 0.8,
     },
   },
 };
@@ -162,8 +59,142 @@ const stepItem = {
   },
 };
 
-/* -------------------- Blocks -------------------- */
+export default function Work() {
+  return (
+    <section id="work" className="mx-auto max-w-6xl px-6 py-12 relative w-full">
+      <header className="max-w-2xl mb-20">
+        <h2 className="text-2xl font-semibold text-neutral-900">Work & Methodologies</h2>
+        <p className="mt-3 text-[15px] sm:text-base text-neutral-600 leading-relaxed">
+          The tools, flows, and frameworks that power my daily workflow. Less boxes, more focus on the craftsmanship.
+        </p>
+      </header>
 
+      <div className="relative">
+        {/* The Timeline Line (Only on md+ to allow full width floating on mobile) */}
+        <div className="hidden md:block absolute left-[31px] top-6 bottom-0 w-[2px] bg-gradient-to-b from-indigo-500/30 via-purple-500/20 to-transparent" />
+
+        {/* 1. AI */}
+        <TimelineSection 
+          title="Working with AI, not relying on it"
+          badge="Next-Gen Workflow"
+          color="purple"
+          description="Artificial intelligence is at the core of my methodology. I use it to optimize context, structure complex tasks, and integrate seamlessly into real development flows while keeping absolute control over the output."
+          visual={<div className="flex items-center justify-start xl:justify-center py-12"><AIVisual /></div>}
+        />
+
+        {/* 2. Git Flow */}
+        <TimelineSection 
+          title="Git Flow"
+          badge="Continuous Integration"
+          color="indigo"
+          fullWidth={true}
+          removeBottomMargin={true}
+          description="A clean repository strategy that favors clarity, fast reviews, and predictable delivery without the overhead of heavy branching models. Main always stays deployable."
+          visual={<div className="flex items-center justify-start xl:justify-center w-full mt-4"><GitFlowScaleView /></div>}
+        />
+
+        {/* 3. Clean Code */}
+        <TimelineSection 
+          title="Clean Code & Docs"
+          badge="Maintainability"
+          color="amber"
+          description="Code is read much more often than it's written. I focus on clear architecture, explicit naming, and up-to-date READMEs or TSDoc to ensure long-term maintainability."
+          visual={<div className="flex items-center justify-start xl:justify-center py-12"><CleanCodeVisual /></div>}
+        />
+
+        {/* 4. Agile */}
+        <TimelineSection 
+          title="Agile & Scrum"
+          badge="Delivery"
+          color="blue"
+          description="Short iterations, sprint planning, dailies, and retrospectives. I adapt quickly, stay pragmatic about agile rituals, and strongly favor continuous delivery over infinite planning."
+          visual={<div className="flex items-center justify-start xl:justify-center py-12"><AgileVisual /></div>}
+        />
+      </div>
+    </section>
+  );
+}
+
+function TimelineSection({ title, badge, description, visual, color, fullWidth = false, removeBottomMargin = false }: { title: string, badge: string, description: string, visual: React.ReactNode, color: string, fullWidth?: boolean, removeBottomMargin?: boolean }) {
+  const colors = {
+    purple: "text-purple-700 bg-purple-500/10 border-purple-500/20",
+    indigo: "text-indigo-700 bg-indigo-500/10 border-indigo-500/20",
+    blue: "text-blue-700 bg-blue-500/10 border-blue-500/20",
+    amber: "text-amber-700 bg-amber-500/10 border-amber-500/20",
+  };
+  const dotColor = {
+    purple: "border-purple-400 shadow-[0_0_15px_rgba(192,132,252,0.6)]",
+    indigo: "border-indigo-400 shadow-[0_0_15px_rgba(129,140,248,0.6)]",
+    blue: "border-blue-400 shadow-[0_0_15px_rgba(96,165,250,0.6)]",
+    amber: "border-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.6)]",
+  };
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`relative md:pl-24 ${removeBottomMargin ? 'mb-0' : 'mb-32 last:mb-0'}`}
+    >
+      <div className={`flex flex-col ${fullWidth ? 'gap-8' : 'xl:flex-row gap-12 xl:items-center'}`}>
+        {/* Text */}
+        <div className={`flex-1 relative w-full ${fullWidth ? 'max-w-3xl' : 'max-w-xl'}`}>
+          {/* Timeline Dot (Desktop only) */}
+          <div className={`hidden md:block absolute -left-[74px] top-[4px] h-5 w-5 rounded-full bg-white border-[4px] ${dotColor[color as keyof typeof dotColor]} z-10`} />
+
+          <div className={`mb-4 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-semibold backdrop-blur-sm ${colors[color as keyof typeof colors]}`}>
+            {badge}
+          </div>
+          <h3 className="text-3xl font-bold text-neutral-900 leading-tight">
+            {title}
+          </h3>
+          <p className="mt-4 text-lg text-neutral-600 leading-relaxed">
+            {description}
+          </p>
+        </div>
+
+        {/* Visual floating right / below */}
+        <div className={fullWidth ? "w-full relative mt-4" : "flex-1 w-full relative"}>
+          {/* Very subtle glow behind visual to make it pop without a hard box */}
+          {!fullWidth && <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 md:w-96 h-64 md:h-96 bg-black/[0.03] rounded-full blur-[80px] pointer-events-none" />}
+          <div className="relative z-10 w-full drop-shadow-sm">
+            {visual}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+function GitFlowScaleView() {
+  return (
+      <div className="w-full flex justify-center overflow-hidden h-[250px] md:h-[400px] items-center relative z-10">
+        <div
+          style={{ width: 1000, height: 400, transform: 'scale(min(1, calc((100vw - 100px) / 1050)))', transformOrigin: 'center center' }}
+          className="relative shrink-0 flex items-center justify-center pointer-events-none"
+        >
+          <div className="absolute top-1/2 left-0 w-full -translate-y-1/2 z-0 flex justify-center">
+            <GitFlowLine />
+          </div>
+
+          <motion.div
+            className="relative z-10 w-full h-full flex justify-between items-center max-w-[1000px] mx-auto pointer-events-auto"
+            variants={stepsContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.25 }}
+          >
+            {orderedSteps.map((s, i) => (
+              <StepBlock key={s.title} step={s} index={i} />
+            ))}
+          </motion.div>
+        </div>
+      </div>
+  );
+}
+
+/* -------------------- Blocks -------------------- */
 function StepBlock({ step, index }: { step: Step; index: number }) {
   const isTop = step.side === "top";
   const offsetStyle = step.offsetX ? { transform: `translateX(${step.offsetX}px)` } : undefined;
@@ -336,7 +367,7 @@ function draw(duration: number, delay: number) {
 
 function WorkPractices() {
   return (
-    <div className="mt-20 w-full mb-12">
+    <div className="w-full mb-12">
       
 
       <motion.div
@@ -396,23 +427,23 @@ function PracticeCard({ title, body, visual }: { title: string; body: string; vi
 
 function AgileVisual() {
   return (
-    <div className="flex justify-center gap-3 h-full w-full items-end pb-4 pt-6">
+    <div className="flex justify-center gap-4 h-full items-center">
       {/* Todo */}
-      <div className="w-10 h-20 bg-white border border-neutral-200 rounded-md shadow-sm flex flex-col p-1.5 gap-1.5 hover:-translate-y-1 transition-transform">
-        <div className="w-full h-1 bg-neutral-200 rounded-full" />
-        <div className="w-full h-4 bg-neutral-200 rounded-sm" />
-        <div className="w-full h-4 bg-neutral-200 rounded-sm" />
+      <div className="w-16 h-32 bg-white border border-neutral-200 rounded-lg shadow-md flex flex-col p-2.5 gap-2.5 hover:-translate-y-2 transition-transform">
+        <div className="w-full h-1.5 bg-neutral-200 rounded-full" />
+        <div className="w-full h-6 bg-neutral-200 rounded-md" />
+        <div className="w-full h-6 bg-neutral-200 rounded-md" />
       </div>
       {/* In Progress */}
-      <div className="w-10 h-20 bg-white border border-neutral-200 rounded-md shadow-sm flex flex-col p-1.5 gap-1.5 hover:-translate-y-1 transition-transform delay-75">
-        <div className="w-full h-1 bg-indigo-200 rounded-full" />
-        <div className="w-full h-4 bg-indigo-400 rounded-sm" />
+      <div className="w-16 h-32 bg-white border border-neutral-200 rounded-lg shadow-md flex flex-col p-2.5 gap-2.5 hover:-translate-y-2 transition-transform delay-75">
+        <div className="w-full h-1.5 bg-indigo-200 rounded-full" />
+        <div className="w-full h-6 bg-indigo-400 rounded-md" />
       </div>
       {/* Done */}
-      <div className="w-10 h-20 bg-white border border-neutral-200 rounded-md shadow-sm flex flex-col p-1.5 gap-1.5 hover:-translate-y-1 transition-transform delay-150">
-        <div className="w-full h-1 bg-purple-200 rounded-full" />
-        <div className="w-full h-4 bg-purple-500 rounded-sm" />
-        <div className="w-full h-4 bg-purple-500 rounded-sm" />
+      <div className="w-16 h-32 bg-white border border-neutral-200 rounded-lg shadow-md flex flex-col p-2.5 gap-2.5 hover:-translate-y-2 transition-transform delay-150">
+        <div className="w-full h-1.5 bg-purple-200 rounded-full" />
+        <div className="w-full h-6 bg-purple-500 rounded-md" />
+        <div className="w-full h-6 bg-purple-500 rounded-md" />
       </div>
     </div>
   );
@@ -420,21 +451,21 @@ function AgileVisual() {
 
 function CleanCodeVisual() {
   return (
-    <div className="flex justify-center items-center h-full w-full pb-2 pt-4 relative">
-      <div className="w-20 h-24 bg-neutral-900 rounded-lg p-3 flex flex-col gap-2 shadow-md hover:scale-105 transition-transform duration-300">
+    <div className="flex justify-center items-center h-full pb-2 pt-4 relative">
+      <div className="w-32 h-40 bg-neutral-900 rounded-xl p-4 flex flex-col gap-3 shadow-xl hover:scale-105 transition-transform duration-300">
         {/* Floating Doc Badge */}
-        <div className="absolute -right-1 -top-1 w-6 h-6 bg-white rounded shadow-sm border border-black/10 flex flex-col p-1 gap-[2px]">
-            <div className="w-full h-[2px] bg-neutral-300 rounded-full text-[0px]"></div>
-            <div className="w-3/4 h-[2px] bg-neutral-300 rounded-full text-[0px]"></div>
-            <div className="w-full h-[2px] bg-neutral-300 rounded-full text-[0px]"></div>
+        <div className="absolute -right-2 -top-2 w-10 h-10 bg-white rounded-md shadow-md border border-black/10 flex flex-col p-1.5 gap-[3px]">
+            <div className="w-full h-[3px] bg-neutral-300 rounded-full text-[0px]"></div>
+            <div className="w-3/4 h-[3px] bg-neutral-300 rounded-full text-[0px]"></div>
+            <div className="w-full h-[3px] bg-neutral-300 rounded-full text-[0px]"></div>
         </div>
         
         {/* Code blocks */}
-        <div className="w-1/2 h-1.5 bg-fuchsia-400 rounded-sm" />
-        <div className="w-full h-1.5 bg-neutral-500/80 rounded-sm mt-1" />
-        <div className="w-4/5 h-1.5 bg-neutral-500/80 rounded-sm" />
-        <div className="w-full h-1.5 bg-neutral-500/80 rounded-sm" />
-        <div className="w-2/3 h-1.5 bg-neutral-500/80 rounded-sm" />
+        <div className="w-1/2 h-2.5 bg-fuchsia-400 rounded-sm" />
+        <div className="w-full h-2.5 bg-neutral-500/80 rounded-sm mt-1" />
+        <div className="w-4/5 h-2.5 bg-neutral-500/80 rounded-sm" />
+        <div className="w-full h-2.5 bg-neutral-500/80 rounded-sm" />
+        <div className="w-2/3 h-2.5 bg-neutral-500/80 rounded-sm" />
       </div>
     </div>
   );
@@ -443,7 +474,7 @@ function CleanCodeVisual() {
 
 function AIVisual() {
   return (
-    <div className="flex justify-center items-center h-full w-full relative">
+    <div className="flex justify-center items-center h-full relative">
       <div className="flex items-center gap-2">
         {/* Token node 1 */}
         <motion.div 

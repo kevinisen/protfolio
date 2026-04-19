@@ -36,6 +36,16 @@ export default function AnimatedDots() {
         addRipple(window.innerWidth / 2, window.innerHeight / 2, 2.5); // Big initial splash
       }
     }, 100);
+
+    // Add a random drop every 7 seconds, BUT only if the page is visible to avoid 
+    // ripples accumulating when the user is on another tab.
+    const randomDropInterval = setInterval(() => {
+      if (canvasRef.current && !document.hidden) {
+        const randomX = Math.random() * window.innerWidth;
+        const randomY = Math.random() * window.innerHeight;
+        addRipple(randomX, randomY, 2.5); // Big splash at random position
+      }
+    }, 7000);
     
     const handleMouseMove = (e: MouseEvent) => {
       const dx = e.clientX - lastDropX;
@@ -145,6 +155,7 @@ export default function AnimatedDots() {
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("click", handleClick);
       window.removeEventListener("resize", resize);
+      clearInterval(randomDropInterval);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);
