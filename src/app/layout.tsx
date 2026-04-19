@@ -1,4 +1,5 @@
 import "./globals.css";
+import AnimatedDots from "@/components/animations/AnimatedDots";
 
 export const metadata = {
   title: "Kevin NETH — Portfolio",
@@ -11,8 +12,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr">
-      <body>{children}</body>
+    <html lang="fr" className="scroll-smooth">
+      <body className="bg-white text-neutral-900 antialiased selection:bg-indigo-100 selection:text-indigo-900 relative">
+        <AnimatedDots />
+        
+        {children}
+      </body>
     </html>
   );
 }

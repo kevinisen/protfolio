@@ -5,56 +5,57 @@ import { motion } from "framer-motion";
 type Step = {
   side: "top" | "bottom";
   title: string;
-  body: string;
   offsetX?: number; // px
-  maxW?: number; // px
 };
 
 const orderedSteps: Step[] = [
   {
     side: "top",
     title: "Main stays deployable",
-    body: "Protected branch, CI required, clean merges — main is always ready to ship.",
     offsetX: -20,
-    maxW: 320,
   },
   {
     side: "bottom",
     title: "Feature branches",
-    body: "Small, short-lived branches. PRs opened early with clear scope + test plan.",
     offsetX: 10,
-    maxW: 320,
   },
   {
     side: "top",
     title: "PR hygiene & reviews",
-    body: "Context, steps to test, screenshots when useful. Reviews focus on clarity and risk.",
     offsetX: 10,
-    maxW: 320,
   },
   {
     side: "bottom",
     title: "Safe merges & releases",
-    body: "Predictable merges, minimal conflicts, and safe deploy practices.",
     offsetX: -10,
-    maxW: 320,
   },
 ];
 
 export default function Work() {
   return (
     <section id="work" className="mx-auto max-w-6xl px-6 py-12 overflow-x-hidden">
-      <header className="max-w-2xl">
+      <header className="max-w-2xl mb-12">
         <h2 className="text-2xl font-semibold text-neutral-900">Work & Methodologies</h2>
         <p className="mt-3 text-neutral-600">
-          Git flow that favors clarity, fast reviews, and predictable delivery.
+          The tools and frameworks that power my daily workflow.
         </p>
       </header>
 
+      {/* AI First Block */}
+      <AIFeature />
+
+      {/* Git Flow Visual */}
+      <div className="mt-20 max-w-2xl">
+        <h3 className="text-2xl font-semibold text-neutral-900">Git Flow</h3>
+        <p className="mt-3 text-neutral-600">
+          Git flow that favors clarity, fast reviews, and predictable delivery.
+        </p>
+      </div>
+
       {/* Unified Scaled View (No scrolling, always properly sized) */}
-      <div className="mt-16 w-full flex justify-center overflow-hidden h-[300px] sm:h-[400px] md:h-[600px] items-center">
+      <div className="mt-8 w-full flex justify-center overflow-hidden h-[200px] sm:h-[250px] md:h-[400px] items-center">
         <div
-          style={{ width: 1000, height: 600, transform: 'scale(min(1, max(0.3, calc(100vw / 1050))))', transformOrigin: 'center center' }}
+          style={{ width: 1000, height: 400, transform: 'scale(min(1, max(0.3, calc(100vw / 1050))))', transformOrigin: 'center center' }}
           className="relative shrink-0 flex items-center justify-center pointer-events-none"
         >
           {/* The horizontal line pinned to the middle */}
@@ -78,6 +79,57 @@ export default function Work() {
 
       <WorkPractices />
     </section>
+  );
+}
+
+/* -------------------- AI Feature Banner -------------------- */
+function AIFeature() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] as const }}
+      className="w-full bg-white rounded-3xl border border-black/5 shadow-[0_8px_30px_rgba(0,0,0,0.05)] flex items-center overflow-hidden flex-col md:flex-row relative"
+    >
+      {/* Decorative gradient blur */}
+      <div className="absolute -top-32 -left-32 w-64 h-64 bg-purple-500/20 rounded-full blur-[80px] pointer-events-none" />
+      <div className="absolute -bottom-32 -right-32 w-64 h-64 bg-indigo-500/20 rounded-full blur-[80px] pointer-events-none" />
+
+      {/* Text Content */}
+      <div className="p-8 md:p-12 flex-1 relative z-10 w-full md:w-auto">
+        <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-700">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+          </span>
+          Next-Gen Workflow
+        </div>
+        <h3 className="text-3xl font-bold text-neutral-900 leading-tight">
+          Working with AI, not relying on it
+        </h3>
+        <p className="mt-4 text-base text-neutral-600 leading-relaxed max-w-lg">
+          Artificial intelligence is at the core of my methodology. I use it to:
+        </p>
+        <ul className="mt-6 space-y-3">
+          {["Optimize context and token usage for efficiency", "Use structured prompting to guide complex tasks", "Review, refine, and validate every output", "Integrate AI into real development workflows"].map((item, i) => (
+            <li key={i} className="flex items-start text-sm text-neutral-700 gap-3">
+              <svg className="mt-0.5 h-4 w-4 shrink-0 text-purple-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Animation Area */}
+      <div className="w-full md:w-[45%] h-64 md:h-auto min-h-[300px] border-t md:border-t-0 md:border-l border-neutral-100 bg-neutral-50/50 flex items-center justify-center p-8 relative z-10">
+        <div className="scale-125 md:scale-150 origin-center">
+          <AIVisual />
+        </div>
+      </div>
+    </motion.div>
   );
 }
 
@@ -115,25 +167,21 @@ const stepItem = {
 function StepBlock({ step, index }: { step: Step; index: number }) {
   const isTop = step.side === "top";
   const offsetStyle = step.offsetX ? { transform: `translateX(${step.offsetX}px)` } : undefined;
-  const maxWStyle = step.maxW ? { width: `${step.maxW}px` } : undefined;
 
-  // Further away from the branch: increased margin to top / bottom
-  const yOffsetClass = isTop ? "mb-[22rem]" : "mt-[22rem]";
+  // Smaller margins for pill size
+  const yOffsetClass = isTop ? "mb-[11rem]" : "mt-[11rem]";
   
   return (
     <motion.div
-      className={`rounded-2xl border border-black/5 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.05)] snap-center ${yOffsetClass}`}
-      style={{ ...maxWStyle, ...offsetStyle }}
+      className={`inline-flex items-center gap-2 rounded-full border border-black/5 bg-white px-4 py-2 shadow-sm snap-center ${yOffsetClass}`}
+      style={offsetStyle}
       variants={stepItem}
       custom={{ side: step.side }}
     >
-      <div className="flex items-center gap-3 mb-2">
-        <span className="flex shrink-0 items-center justify-center w-6 h-6 rounded-full bg-neutral-100 text-xs font-medium text-neutral-500">
-          {index + 1}
-        </span>
-        <p className="text-sm font-semibold text-neutral-900">{step.title}</p>
-      </div>
-      <p className="mt-2 text-sm leading-relaxed text-neutral-600">{step.body}</p>
+      <span className="flex shrink-0 items-center justify-center w-5 h-5 rounded-full bg-indigo-50 text-[10px] font-bold text-indigo-500">
+        {index + 1}
+      </span>
+      <p className="text-sm font-medium text-neutral-800 whitespace-nowrap">{step.title}</p>
     </motion.div>
   );
 }
@@ -289,15 +337,10 @@ function draw(duration: number, delay: number) {
 function WorkPractices() {
   return (
     <div className="mt-20 w-full mb-12">
-      <header className="max-w-2xl mb-12">
-        <h3 className="text-2xl font-semibold text-neutral-900">Au-delà du code</h3>
-        <p className="mt-3 text-neutral-600">
-          Les méthodes qui me permettent de maintenir la qualité et la vélocité.
-        </p>
-      </header>
+      
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 gap-8"
         variants={stepsContainer}
         initial="hidden"
         whileInView="visible"
@@ -305,17 +348,12 @@ function WorkPractices() {
       >
         <PracticeCard
           title="Agile & Scrum"
-          body="Itérations courtes, planification de sprints, dailies et rétrospectives. Je m'adapte rapidement et favorise la livraison continue."
+          body="Short iterations, sprint planning, dailies, and retrospectives. I adapt quickly and favor continuous delivery."
           visual={<AgileVisual />}
         />
         <PracticeCard
-          title="Stratégie de Test"
-          body="Une pyramide solide : tests unitaires véloces, tests d'intégration (APIs), et tests E2E/AI end-to-end pour les parcours vitaux."
-          visual={<TestingPyramid />}
-        />
-        <PracticeCard
           title="Clean Code & Docs"
-          body="Le code est lu bien plus souvent qu'écrit. Je mise sur une architecture claire, un nommage explicite, et des READMEs / TSDoc à jour."
+          body="Code is read much more often than it's written. I focus on clear architecture, explicit naming, and up-to-date READMEs / TSDoc."
           visual={<CleanCodeVisual />}
         />
       </motion.div>
@@ -337,42 +375,22 @@ function PracticeCard({ title, body, visual }: { title: string; body: string; vi
   return (
     <motion.div
       variants={practiceCardItem}
-      className="flex flex-col rounded-2xl border border-black/5 bg-white p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] h-full"
+      className="group relative flex flex-col rounded-3xl border border-black/5 bg-white p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg h-full overflow-hidden"
     >
-      <div className="h-32 mb-6 flex items-center justify-center bg-neutral-50/50 rounded-xl border border-black/5">
+      {/* Decorative gradient blur */}
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-zinc-200/50 rounded-full blur-[60px] pointer-events-none group-hover:bg-indigo-300/30 transition-colors duration-500" />
+      <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-zinc-100/50 rounded-full blur-[60px] pointer-events-none group-hover:bg-purple-300/30 transition-colors duration-500" />
+
+      <div className="relative z-10 h-32 mb-8 flex items-center justify-center bg-neutral-50/50 rounded-2xl border border-black/5 group-hover:border-indigo-100/50 transition-colors">
         {visual}
       </div>
-      <h4 className="text-lg font-semibold text-neutral-900">{title}</h4>
-      <p className="mt-3 text-sm leading-relaxed text-neutral-600">{body}</p>
+      <h4 className="relative z-10 text-lg font-semibold text-neutral-900 group-hover:text-indigo-950 transition-colors">
+        {title}
+      </h4>
+      <p className="relative z-10 mt-3 text-sm leading-relaxed text-neutral-600">
+        {body}
+      </p>
     </motion.div>
-  );
-}
-
-function TestingPyramid() {
-  return (
-    <div className="flex flex-col items-center justify-end h-full w-full gap-[2px] pb-4 pt-8">
-      {/* Top: E2E / AI */}
-      <motion.div 
-        className="w-1/3 bg-blue-500/90 text-white text-[10px] font-medium text-center py-1.5 rounded-t-md shadow-sm"
-        whileHover={{ scale: 1.05 }}
-      >
-        E2E & AI
-      </motion.div>
-      {/* Middle: Integration */}
-      <motion.div 
-        className="w-2/3 bg-amber-500/90 text-white text-[10px] font-medium text-center py-1.5 shadow-sm"
-        whileHover={{ scale: 1.05 }}
-      >
-        Intégration
-      </motion.div>
-      {/* Bottom: Unit */}
-      <motion.div 
-        className="w-[90%] bg-emerald-500/90 text-white text-[10px] font-medium text-center py-2 rounded-b-md shadow-sm"
-        whileHover={{ scale: 1.05 }}
-      >
-        Tests Unitaires
-      </motion.div>
-    </div>
   );
 }
 
@@ -387,14 +405,14 @@ function AgileVisual() {
       </div>
       {/* In Progress */}
       <div className="w-10 h-20 bg-white border border-neutral-200 rounded-md shadow-sm flex flex-col p-1.5 gap-1.5 hover:-translate-y-1 transition-transform delay-75">
-        <div className="w-full h-1 bg-blue-200 rounded-full" />
-        <div className="w-full h-4 bg-blue-500 rounded-sm" />
+        <div className="w-full h-1 bg-indigo-200 rounded-full" />
+        <div className="w-full h-4 bg-indigo-400 rounded-sm" />
       </div>
       {/* Done */}
       <div className="w-10 h-20 bg-white border border-neutral-200 rounded-md shadow-sm flex flex-col p-1.5 gap-1.5 hover:-translate-y-1 transition-transform delay-150">
-        <div className="w-full h-1 bg-emerald-200 rounded-full" />
-        <div className="w-full h-4 bg-emerald-500 rounded-sm" />
-        <div className="w-full h-4 bg-emerald-500 rounded-sm" />
+        <div className="w-full h-1 bg-purple-200 rounded-full" />
+        <div className="w-full h-4 bg-purple-500 rounded-sm" />
+        <div className="w-full h-4 bg-purple-500 rounded-sm" />
       </div>
     </div>
   );
@@ -417,6 +435,75 @@ function CleanCodeVisual() {
         <div className="w-4/5 h-1.5 bg-neutral-500/80 rounded-sm" />
         <div className="w-full h-1.5 bg-neutral-500/80 rounded-sm" />
         <div className="w-2/3 h-1.5 bg-neutral-500/80 rounded-sm" />
+      </div>
+    </div>
+  );
+}
+
+
+function AIVisual() {
+  return (
+    <div className="flex justify-center items-center h-full w-full relative">
+      <div className="flex items-center gap-2">
+        {/* Token node 1 */}
+        <motion.div 
+          className="w-8 h-8 rounded-full border-2 border-purple-500/30 flex items-center justify-center bg-purple-50"
+          animate={{ scale: [1, 1.1, 1], borderColor: ["rgba(168,85,247,0.3)", "rgba(168,85,247,0.8)", "rgba(168,85,247,0.3)"] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="w-2.5 h-2.5 bg-purple-500 rounded-full" />
+        </motion.div>
+        
+        {/* Connecting line */}
+        <div className="w-8 h-0.5 bg-gradient-to-r from-purple-200 to-indigo-200 relative overflow-hidden">
+          <motion.div 
+            className="absolute top-0 left-0 h-full w-1/2 bg-gradient-to-r from-purple-500 to-indigo-500"
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
+
+        {/* Central AI core */}
+        <motion.div 
+          className="w-12 h-12 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 shadow-lg shadow-indigo-500/30 flex items-center justify-center relative"
+          animate={{ rotate: [0, 3, -3, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <span className="text-white text-lg font-bold">AI</span>
+          
+          {/* Sparkles */}
+          <motion.div 
+            className="absolute -top-2 -right-1 w-2 h-2 bg-yellow-300 rounded-full"
+            animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+          <motion.div 
+            className="absolute -bottom-1 -left-2 w-1.5 h-1.5 bg-cyan-300 rounded-full"
+            animate={{ scale: [0, 1, 0], opacity: [0, 1, 0] }}
+            transition={{ duration: 1.5, delay: 0.5, repeat: Infinity, ease: "easeInOut" }}
+          />
+        </motion.div>
+
+        {/* Connecting line */}
+        <div className="w-8 h-0.5 bg-gradient-to-r from-indigo-200 to-purple-200 relative overflow-hidden">
+          <motion.div 
+            className="absolute top-0 left-0 h-full w-1/2 bg-gradient-to-r from-indigo-500 to-purple-500"
+            animate={{ x: ["-100%", "200%"] }}
+            transition={{ duration: 1.5, delay: 0.75, repeat: Infinity, ease: "linear" }}
+          />
+        </div>
+
+        {/* Token node 2 */}
+        <motion.div 
+          className="w-8 h-8 flex flex-col gap-1 items-center justify-center p-1 rounded bg-white shadow-sm border border-neutral-200"
+          animate={{ y: [0, -3, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        >
+          {/* Simulating code lines coming out */}
+          <div className="w-full h-1 bg-indigo-400 rounded-full" />
+          <div className="w-4/5 h-1 bg-indigo-300 rounded-full" />
+          <div className="w-full h-1 bg-purple-400 rounded-full" />
+        </motion.div>
       </div>
     </div>
   );

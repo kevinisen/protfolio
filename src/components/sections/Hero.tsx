@@ -9,45 +9,51 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-[100svh] flex items-center"
+      className="relative min-h-[100svh] flex items-center overflow-hidden"
     >
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-24 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(0,0,0,0.05),transparent_60%)]" />
+      <div className="pointer-events-none absolute inset-0 z-0">
+        <div className="absolute -top-32 left-1/4 h-[800px] w-[800px] rounded-full bg-[radial-gradient(circle,rgba(168,85,247,0.1),transparent_60%)] blur-3xl mix-blend-multiply" />
+        <div className="absolute top-1/4 right-0 h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08),transparent_60%)] blur-3xl mix-blend-multiply" />
       </div>
 
-      <div className="mx-auto w-full max-w-6xl px-6 py-24">
+      <div className="mx-auto w-full max-w-6xl px-6 py-24 relative z-10">
         
         {/* Eyebrow */}
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, filter: "blur(6px)" }}
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.2, ease: easePremium }}
-          className="text-sm tracking-wide text-neutral-600"
+          className="mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-50/50 px-4 py-1.5 text-xs font-bold tracking-wide text-indigo-700 backdrop-blur-sm"
         >
-          Full-stack • AI • Developer
-        </motion.p>
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+          </span>
+          Available for new projects
+        </motion.div>
 
         {/* Title */}
         <motion.h1
-          initial={{ opacity: 0, filter: "blur(14px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, filter: "blur(14px)", y: 10 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 1.6, ease: easePremium, delay: 0.25 }}
           className="mt-4 text-4xl font-semibold tracking-tight text-neutral-900 sm:text-6xl"
         >
           Kevin NETH
           <span className="mt-4 block text-neutral-600 font-normal">
-            Let’s build something solid, together.
+            Let’s build something solid, <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500 font-medium">together</span>.
           </span>
         </motion.h1>
 
         {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0, filter: "blur(10px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, filter: "blur(10px)", y: 10 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 1.4, ease: easePremium, delay: 0.6 }}
-          className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600 sm:text-lg"
+          className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 sm:text-xl"
         >
-          I’m a full-stack developer building applications, with a focus on best practices and AI integration.
+          Freelance Full-stack & AI Developer based in Paris.<br className="hidden sm:block" />
+          I build high-performance web applications focused on clean architecture and smart AI integrations.
           <br className="hidden sm:block" />
           <br className="sm:hidden" />
           Stay focused. Keep it simple. Move forward.
@@ -55,23 +61,24 @@ export default function Hero() {
 
         {/* Buttons */}
         <motion.div
-          initial={{ opacity: 0, filter: "blur(6px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
+          initial={{ opacity: 0, filter: "blur(6px)", y: 10 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 1.2, ease: easePremium, delay: 1 }}
-          className="mt-10 flex flex-wrap items-center gap-3"
+          className="mt-10 flex flex-wrap items-center gap-4"
         >
           <a
             href="#projects"
-            className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition hover:opacity-90"
+            className="group relative inline-flex items-center justify-center overflow-hidden rounded-full bg-neutral-900 px-8 py-3.5 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition hover:-translate-y-0.5 hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)]"
           >
-            View Projects
+            <span className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="relative z-10">View Projects</span>
           </a>
 
           <a
             href="#work"
-            className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-6 py-3 text-sm font-medium text-neutral-900 shadow-[0_8px_30px_rgba(0,0,0,0.06)] transition hover:-translate-y-0.5"
+            className="group inline-flex items-center justify-center rounded-full border border-black/10 bg-white px-8 py-3.5 text-sm font-semibold text-neutral-900 shadow-sm transition hover:-translate-y-0.5 hover:border-indigo-500/20 hover:bg-indigo-50"
           >
-            Work
+            <span className="group-hover:text-indigo-700 transition-colors">Methodologies</span>
           </a>
 
           <a
