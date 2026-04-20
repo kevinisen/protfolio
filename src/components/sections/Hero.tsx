@@ -18,19 +18,15 @@ export default function Hero() {
 
       <div className="mx-auto w-full max-w-6xl px-6 py-24 relative z-10">
         
-        {/* Eyebrow */}
-        <motion.div
-          initial={{ opacity: 0, filter: "blur(6px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
+        {/* Eyebrow / Pre-title */}
+        <motion.h2
+          initial={{ opacity: 0, filter: "blur(6px)", y: 10 }}
+          animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
           transition={{ duration: 1.2, ease: easePremium }}
-          className="mb-8 inline-flex items-center gap-2 rounded-full border border-indigo-500/20 bg-indigo-50/50 px-4 py-1.5 text-xs font-bold tracking-wide text-indigo-700 backdrop-blur-sm"
+          className="mb-4 text-sm font-bold uppercase tracking-[0.2em] text-indigo-500"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-          </span>
-          Available for new projects
-        </motion.div>
+          Full Stack & AI Developer
+        </motion.h2>
 
         {/* Title */}
         <motion.h1
@@ -52,8 +48,8 @@ export default function Hero() {
           transition={{ duration: 1.4, ease: easePremium, delay: 0.6 }}
           className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 sm:text-xl"
         >
-          Freelance Full-stack & AI Developer based in Paris.<br className="hidden sm:block" />
-          I build high-performance web applications focused on clean architecture and smart AI integrations.
+          I'm a developer from France.<br className="hidden sm:block" />
+          I build applications and enjoy learning and improving through projects, especially around AI.
           <br className="hidden sm:block" />
           <br className="sm:hidden" />
           Stay focused. Keep it simple. Move forward.

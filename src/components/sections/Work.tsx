@@ -98,7 +98,7 @@ export default function Work() {
           title="Clean Code & Docs"
           badge="Maintainability"
           color="amber"
-          description="Code is read much more often than it's written. I focus on clear architecture, explicit naming, and up-to-date READMEs or TSDoc to ensure long-term maintainability."
+          description="I focus on clear structure, explicit naming, and useful documentation to keep code easy to maintain over time."
           visual={<div className="flex items-center justify-start xl:justify-center py-12"><CleanCodeVisual /></div>}
         />
 
@@ -107,7 +107,8 @@ export default function Work() {
           title="Agile & Scrum"
           badge="Delivery"
           color="blue"
-          description="Short iterations, sprint planning, dailies, and retrospectives. I adapt quickly, stay pragmatic about agile rituals, and strongly favor continuous delivery over infinite planning."
+          description="Sprint planning, daily stand-ups, reviews, and retrospectives.
+I’m comfortable working within this rhythm and adapt easily to it."
           visual={<div className="flex items-center justify-start xl:justify-center py-12"><AgileVisual /></div>}
         />
       </div>

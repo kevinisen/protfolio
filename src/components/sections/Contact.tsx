@@ -1,18 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 const socials = [
   {
     name: "Email",
-    label: "bonjour@ton-email.com",
-    href: "mailto:bonjour@ton-email.com",
+    label: "kneth.pro@gmail.com",
+    href: "mailto:kneth.pro@gmail.com",
     icon: <MailIcon />,
   },
   {
     name: "LinkedIn",
-    label: "linkedin.com/in/ton-profil",
-    href: "https://linkedin.com",
+    label: "linkedin.com/in/kevin-neth-ent",
+    href: "https://www.linkedin.com/in/kevin-neth-ent/",
     target: "_blank",
     icon: <LinkedInIcon />,
   }
@@ -36,6 +37,15 @@ const itemVariants = {
 };
 
 export default function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = (e: React.MouseEvent) => {
+    e.preventDefault();
+    navigator.clipboard.writeText("kneth.pro@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <section id="contact" className="mx-auto max-w-6xl px-6 py-12 relative flex flex-col gap-24">
       <motion.div
@@ -61,26 +71,34 @@ export default function Contact() {
             Let's keep <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">in touch.</span>
           </h2>
           <p className="mt-6 text-lg text-neutral-400 leading-relaxed">
-            I'm actively looking for new opportunities—whether it's a freelance mission, a full-time role (CDI), or any innovative project involving AI and Three.js. Feel free to reach out!
+            Need help building something that scales? I’ve got you.
           </p>
           
           <div className="flex flex-wrap justify-center gap-6 mt-10 w-full">
-            {socials.map((social) => (
-              <motion.a
-                key={social.name}
-                href={social.href}
-                target={social.target}
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className={`inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold tracking-wide transition-all ${
-                  social.name === "Email" 
-                    ? "bg-white text-neutral-900 shadow-[0_4px_14px_rgba(255,255,255,0.1)] hover:bg-neutral-100" 
-                    : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20"
-                }`}
-              >
-                {social.icon} {social.name === "Email" ? "Send an Email" : "Connect on LinkedIn"}
-              </motion.a>
-            ))}
+            {socials.map((social) => {
+              const isEmail = social.name === "Email";
+
+              return (
+                <motion.a
+                  key={social.name}
+                  href={isEmail ? "#" : social.href}
+                  onClick={isEmail ? handleCopyEmail : undefined}
+                  target={isEmail ? undefined : social.target}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold tracking-wide transition-all min-w-[200px] ${
+                    isEmail
+                      ? copied
+                        ? "bg-green-500 text-white shadow-[0_4px_14px_rgba(34,197,94,0.3)]"
+                        : "bg-white text-neutral-900 shadow-[0_4px_14px_rgba(255,255,255,0.1)] hover:bg-neutral-100"
+                      : "bg-white/5 text-white border border-white/10 hover:bg-white/10 hover:border-white/20"
+                  }`}
+                >
+                  {isEmail && copied ? <CheckIcon /> : social.icon}
+                  {isEmail ? (copied ? "Email copied!" : "Send me an email") : "Connect on LinkedIn"}
+                </motion.a>
+              );
+            })}
           </div>
         </motion.div>
       </motion.div>
@@ -129,6 +147,14 @@ function ArrowRightIcon() {
     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M5 12h14" />
       <path d="m12 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 6 9 17l-5-5" />
     </svg>
   );
 }
