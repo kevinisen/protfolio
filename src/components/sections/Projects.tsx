@@ -6,7 +6,7 @@ const projects = [
     title: "AI Assistant",
     description: "A 3D assistant connected to an AI model, designed to interact with users in real time.",
     stack: ["Next.js", "Node.js", "PostgreSQL"],
-    imageUrl: "/project_img/vr-assistant.png",
+    imageUrl: "/project_img/anime-assistant.png",
     link: "https://anime-assistant.vercel.app/",
   },
   {
