@@ -7,12 +7,14 @@ const projects = [
     description: "A 3D assistant connected to an AI model, designed to interact with users in real time.",
     stack: ["Next.js", "Node.js", "PostgreSQL"],
     imageUrl: "/project_img/vr-assistant.png",
+    link: "https://anime-assistant.vercel.app/",
   },
   {
     title: "Royal Start",
     description: "A web platform designed to help cat and dog breeders manage and support their activity.",
     stack: ["Python", "NumPy", "Algebra"],
     imageUrl: "/project_img/royalstart.png",
+    link: "https://breeder.royalcanin.com/",
   },
   {
     title: "Vision Track",
@@ -75,21 +77,23 @@ function ProjectCard({
   description,
   stack,
   imageUrl,
+  link,
 }: {
   title: string;
   description: string;
   stack: string[];
   imageUrl: string;
+  link?: string;
 }) {
-  return (
-    <div className="group flex flex-col overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10 relative">
+  const content = (
+    <>
       {/* Decorative Gradient Background (Hover active) */}
       <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-purple-50/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
       <div className="absolute -top-32 -right-32 w-64 h-64 bg-indigo-400/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
       <div className="absolute -bottom-32 -left-32 w-64 h-64 bg-purple-400/20 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
       {/* Image */}
-      <div className="relative aspect-[16/10] w-full bg-neutral-100 flex-shrink-0 overflow-hidden relative z-10">
+      <div className="relative aspect-[16/10] w-full bg-neutral-100 shrink-0 overflow-hidden z-10">
         <Image
           src={imageUrl}
           alt={`${title} preview`}
@@ -101,9 +105,14 @@ function ProjectCard({
 
       {/* Content */}
       <div className="flex flex-1 flex-col p-6 sm:p-8 relative z-10 bg-white/50 backdrop-blur-sm">
-        <h3 className="text-xl font-bold text-neutral-900 group-hover:text-indigo-950 transition-colors duration-300">
-          {title}
-        </h3>
+        <div className="flex justify-between items-center">
+          <h3 className="text-xl font-bold text-neutral-900 group-hover:text-indigo-950 transition-colors duration-300">
+            {title}
+          </h3>
+          {link && (
+             <svg className="w-5 h-5 text-indigo-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+          )}
+        </div>
         <p className="mt-3 text-sm text-neutral-600 leading-relaxed flex-1">
           {description}
         </p>
@@ -119,6 +128,22 @@ function ProjectCard({
           ))}
         </div>
       </div>
+    </>
+  );
+
+  const containerClasses = "group flex flex-col overflow-hidden rounded-3xl border border-black/5 bg-white shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl hover:shadow-indigo-500/10 relative";
+
+  if (link) {
+    return (
+      <a href={link} target="_blank" rel="noopener noreferrer" className={containerClasses + " cursor-pointer"}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <div className={containerClasses}>
+      {content}
     </div>
   );
 }
