@@ -5,21 +5,21 @@ const projects = [
   {
     title: "AI Assistant",
     description: "A 3D assistant connected to an AI model, designed to interact with users in real time.",
-    stack: ["Next.js", "Node.js", "PostgreSQL"],
+    highlight: "3D WebGL & Real-time AI integration",
     imageUrl: "/project_img/anime-assistant.png",
     link: "https://anime-assistant.vercel.app/",
   },
   {
     title: "Royal Start",
     description: "A web platform designed to help cat and dog breeders manage and support their activity.",
-    stack: ["Python", "NumPy", "Algebra"],
+    highlight: "Scale to handle thousands of breeders",
     imageUrl: "/project_img/royalstart.png",
     link: "https://breeder.royalcanin.com/",
   },
   {
     title: "Vision Track",
     description: "A real-time behavior analysis system using computer vision to detect and track people.",
-    stack: ["React", "Express", "CI/CD"],
+    highlight: "Computer Vision & Real-time tracking",
     imageUrl: "/project_img/yolo.png",
   },
 ];
@@ -75,13 +75,13 @@ function ThreeJsLink({ title, href, emoji = "🚀" }: { title: string; href: str
 function ProjectCard({
   title,
   description,
-  stack,
+  highlight,
   imageUrl,
   link,
 }: {
   title: string;
   description: string;
-  stack: string[];
+  highlight?: string;
   imageUrl: string;
   link?: string;
 }) {
@@ -117,16 +117,13 @@ function ProjectCard({
           {description}
         </p>
 
-        <div className="mt-8 flex flex-wrap gap-2">
-          {stack.map((tech, i) => (
-            <span
-              key={i}
-              className="text-[11px] font-semibold tracking-wide rounded-full border border-indigo-500/20 bg-indigo-50/50 px-3 py-1.5 text-indigo-700 transition-colors group-hover:bg-indigo-100/50 group-hover:border-indigo-500/40"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+        {highlight && (
+          <div className="mt-8 border-t border-neutral-100 pt-4">
+            <p className="text-[13px] font-medium text-indigo-700/80 tracking-wide">
+              {highlight}
+            </p>
+          </div>
+        )}
       </div>
     </>
   );

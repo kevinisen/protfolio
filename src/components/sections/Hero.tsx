@@ -49,7 +49,7 @@ export default function Hero() {
           className="mt-8 max-w-2xl text-lg leading-relaxed text-neutral-600 sm:text-xl"
         >
           I'm a developer from France.<br className="hidden sm:block" />
-          I build applications and enjoy learning and improving through projects, especially around AI.
+          I build applications and enjoy learning and improving through projects, especially around AI and Web 3D.
           <br className="hidden sm:block" />
           <br className="sm:hidden" />
           Stay focused. Keep it simple. Move forward.
